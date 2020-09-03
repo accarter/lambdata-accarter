@@ -1,3 +1,6 @@
-from my_lambdata.ds_utilities import enlarge
+from my_lambdata.ds_utilities import ConfusionMatrix
 
-print(enlarge(5))
+cm = ConfusionMatrix(85, 58, 8, 36)
+print('Accuracy', cm.accuracy())
+print('Precision', cm.precision())
+print('Recall', cm.recall())

@@ -4,7 +4,9 @@ A collection of data science utility functions
 
 ## Installation
 
-TODO
+```
+pip install -i https://test.pypi.org/simple/ lambdata-accarter==0.0.1
+```
 
 ## Usage
 
