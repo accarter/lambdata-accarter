@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lambdata-accarter",
-    version="0.0.3",
+    version="0.0.4",
     author="Adam Carter",
     author_email="adm.carter@gmail.com",
     description="A small example package",

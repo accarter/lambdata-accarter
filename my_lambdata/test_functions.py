@@ -1,6 +1,10 @@
-from my_lambdata.ds_utilities import ConfusionMatrix
+import os
 
-cm = ConfusionMatrix(85, 58, 8, 36)
-print('Accuracy', cm.accuracy())
-print('Precision', cm.precision())
-print('Recall', cm.recall())
+from my_lambdata.ds_utilities import SWIMSWrangler
+
+filename = 'men_50_bk_lcm.csv'
+wrangler = SWIMSWrangler(os.path.abspath(
+    os.path.join(__file__, f'../raw_data/{filename}')))
+
+print(wrangler)
+print(wrangler.rows[0])

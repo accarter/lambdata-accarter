@@ -1,21 +1,23 @@
 # lambdata-accarter
-A collection of data science utility functions
+A utility class for reading raw, unformatted CSV files accessed from
+USA Swimming's SWIMS database.
 
 
 ## Installation
 
 ```
-pip install -i https://test.pypi.org/simple/ lambdata-accarter==0.0.3
+pip install -i https://test.pypi.org/simple/ lambdata-accarter==0.0.4
 ```
 
 ## Usage
 
 ```
-from my_lambdata.ds_utilities import ConfusionMatrix
+from my_lambdata.ds_utilities import SWIMSWrangler
 
-cm = ConfusionMatrix(85, 58, 8, 36)
+filename = 'men_50_bk_lcm.csv'
+wrangler = SWIMSWrangler(os.path.abspath(
+    os.path.join(__file__, f'../raw_data/{filename}')))
 
-print('Accuracy: ', cm.accuracy())
-print('Precision: ', cm.precision())
-print('Recall: ', cm.recall())
+print(wrangler)
+print(wrangler.rows[0])
 ```
