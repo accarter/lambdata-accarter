@@ -114,6 +114,6 @@ class SWIMSWrangler():
         return row[:idx] + replacements + row[idx + 1:]
 
     def __repr__(self):
-        return '<SWIMSWrangler object; ' \
-            'distance={}, course={}, stroke={}, male_event={}>'.format(
-            self.distance, self.course, self.stroke, self.male_event)
+        return '<{__class__.__name__} object; ' \
+            'distance={distance}, course={course}, stroke={stroke}, male_event={male_event}>'\
+                .format(__class__=self.__class__, **self.__dict__)
