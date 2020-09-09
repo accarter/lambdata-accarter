@@ -14,6 +14,6 @@ ENV SHELL=/bin/bash
 RUN apt-get update && \
   apt-get upgrade -y && \
   apt-get install python3-pip curl -y && \
-  pip3 install pipenv \
-  pipenv install pandas \
-  pip3 install -i https://test.pypi.org/simple/ lambdata-accarter
+  pip3 install pipenv && \
+  pip3 install pandas && \
+  pip3 install -i https://test.pypi.org/simple/ lambdata-accarter==0.0.4
