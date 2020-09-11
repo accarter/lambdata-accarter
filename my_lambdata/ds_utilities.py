@@ -1,5 +1,6 @@
 import re
 import pandas as pd
+import requests
 
 FULL_NAME_HEADER = 'full_name'
 EVENT_HEADER = 'event_desc'
@@ -19,14 +20,14 @@ class SWIMSWrangler():
 
     normal_field= '(".*?")'
     time_standard_field = '(""".*"""|".*?")'
-    swim_regexp = re.compile(
+    swim_pat = re.compile(
         '.*?'.join([normal_field] * (TIME_STANDARD_COL - 1) +
                    [time_standard_field] +
                    [normal_field] * (NUM_COLS - TIME_STANDARD_COL)))
 
     def __init__(self, path):
         '''
-        Create a SWIMSWrangler using the CSV file found at the specified path.
+        Create a SWIMSWrangler using the CSV file found at the specified path or url.
         '''
         self.path = path
         self.orig_headers, self.raw_rows = self._read_data()
@@ -40,8 +41,11 @@ class SWIMSWrangler():
         '''
         Read in the raw data from the CSV file.
         '''
-        with open(self.path, 'r') as f:
-            header, *rows = f.readlines()
+        if self.path.startswith('http'):
+            header, *rows = requests.get(self.path).text.split('\n')[:-1]
+        else:
+            with open(self.path, 'r') as f:
+                    header, *rows = f.readlines()         
 
         return (
             [col.strip('="\n') for col in header.split(',')],
@@ -104,7 +108,7 @@ class SWIMSWrangler():
         return [replacement_map[header](row) for row in rows]
 
     def _to_fields(self, row):
-        return list(self.swim_regexp.search(self.raw_rows[0]).groups())
+        return list(self.swim_pat.search(self.raw_rows[0]).groups())
 
     def _replace_by_split(self, row, idx):
         return self._replace_col(row, idx, row[idx].split(','))

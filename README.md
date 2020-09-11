@@ -14,9 +14,9 @@ pip install -i https://test.pypi.org/simple/ lambdata-accarter==0.0.4
 ```
 from my_lambdata.ds_utilities import SWIMSWrangler
 
-filename = 'men_50_bk_lcm.csv'
-wrangler = SWIMSWrangler(os.path.abspath(
-    os.path.join(__file__, f'../raw_data/{filename}')))
+url = 'https://raw.githubusercontent.com/accarter/lambdata-accarter/master/my_lambdata/raw_data/men_50_fr_scy.csv'
+
+wrangler = SWIMSWrangler(url)
 
 print(wrangler)
 print(wrangler.rows[0])
